@@ -1,6 +1,8 @@
 use std::fs::File;
 use std::io::{self, BufRead, BufReader, Write};
 use structopt::StructOpt;
+use std::fs::{self, metadata};
+use std::process;
 
 /// dog - a cat alternative written in rust
 #[derive(StructOpt, Debug)]
@@ -28,7 +30,7 @@ pub struct Cli {
 
 fn main() {
     let args = Cli::from_args();
-    let directory = &args.path;
+    let path = &args.path;
     let show_ends = &args.show_ends;
     let num_lines = &args.lines;
     let stats = &args.stats;
@@ -42,7 +44,17 @@ fn main() {
     let mut total_uni_chars: usize = 0;
     let num_lines_splitted: Vec<&str> = num_lines.split(":").collect();
 
-    let input_path = directory;
+    let metadata = metadata(path);
+
+    if !fs::metadata(path).is_ok() {
+        println!("dog: {}: No such file or directory", path.display());
+        process::exit(1);
+    } else if metadata.unwrap().is_dir() {
+        println!("dog: {}: Is a directory", path.display());
+        process::exit(1);
+    }
+
+    let input_path = path;
     let file = BufReader::new(File::open(&input_path).unwrap());
     for line in file.lines() {
         let my_line = line.unwrap();
