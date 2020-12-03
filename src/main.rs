@@ -1,53 +1,29 @@
 use std::fs::File;
 use std::io::{self, BufRead, BufReader, Write};
-use structopt::StructOpt;
 use std::fs::{self, metadata};
 use std::process;
 
-/// dog - a cat alternative written in rust
-#[derive(StructOpt, Debug)]
-pub struct Cli {
-    /// Give me a file
-    #[structopt(parse(from_os_str))]
-    path: std::path::PathBuf,
-
-    /// Print $ at EOL
-    #[structopt(short = "e", long = "show-ends")]
-    show_ends: bool,
-
-    /// Print a specified range of lines
-    #[structopt(name = "n:m", short = "l", long = "lines", default_value = ":")]
-    lines: String,
-
-    /// Print statistics (count of lines, characters and uni-characters) at the end of the File
-    #[structopt(short = "s", long = "statistics")]
-    stats: bool,
-
-    /// Print line numbers
-    #[structopt(short = "n", long = "line_numbers")]
-    line_numbers: bool
-}
+mod input;
+mod statistic;
+use statistic::statistic as stats;
 
 fn main() {
-    let args = Cli::from_args();
-    let path = &args.path;
-    let show_ends = &args.show_ends;
-    let num_lines = &args.lines;
-    let stats = &args.stats;
-    let line_numbers = &args.line_numbers;
+    let path = input::getpath();
+    let ends = input::getends();
+    let linenumbers = input::getlinenumbers();
+    let stats = input::getstatistics();
+    let lines = input::getlines();
 
     let errormsg: &str = "Could not write";
     let stdout = io::stdout();
     let mut handle = io::BufWriter::new(stdout.lock());
-    let mut total_chars: usize = 0;
     let mut total_lines: usize = 0;
-    let mut total_uni_chars: usize = 0;
-    let num_lines_splitted: Vec<&str> = num_lines.split(":").collect();
+    let lines_splitted: Vec<&str> = lines.split(":").collect();
 
-    let metadata = metadata(path);
+    let metadata = metadata(&path);
 
-    if !fs::metadata(path).is_ok() {
-        println!("dog: {}: No such file or directory", path.display());
+    if !fs::metadata(&path).is_ok() {
+        println!("dog: {}: No such file or directory", &path.display());
         process::exit(1);
     } else if metadata.unwrap().is_dir() {
         println!("dog: {}: Is a directory", path.display());
@@ -55,22 +31,25 @@ fn main() {
     }
 
     let input_path = path;
+    if stats {
+        stats::getsize(&input_path);
+    }
+
     let file = BufReader::new(File::open(&input_path).unwrap());
     for line in file.lines() {
         let my_line = line.unwrap();
         total_lines = total_lines + 1;
 
-        if process_line(&num_lines_splitted, total_lines) {
-            if *stats {
-                total_chars = total_chars + my_line.len();
-                total_uni_chars = total_uni_chars + my_line.chars().count();
+        if process_line(&lines_splitted, total_lines) {
+            if stats {
+                stats::addchars(&my_line);
             }
 
-            if *line_numbers {
+            if linenumbers {
                 write!(handle, "{}", total_lines.to_string() + " | ").expect(errormsg);
             }
 
-            if *show_ends {
+            if ends {
                 writeln!(handle, "{}", my_line + "$").expect(errormsg);  
             } else {
                 writeln!(handle, "{}", &my_line).expect(errormsg);
@@ -78,29 +57,27 @@ fn main() {
         }
     }
 
-    if *stats {
-        writeln!(handle, "test{}", total_lines).expect(errormsg);
+    if stats {
         writeln!(handle, "Lines processed:\t\t{}", total_lines).expect(errormsg);
-        writeln!(handle, "Characters read:\t\t{}", total_chars).expect(errormsg);
-        writeln!(handle, "Unicode Characters read:\t{}", total_uni_chars).expect(errormsg);
+        writeln!(handle, "{}", stats::returnstats()).expect(errormsg);
     }
 }
 
-fn process_line(num_lines_splitted: &Vec<&str>, total_lines: usize) -> bool {
-    if num_lines_splitted[0].is_empty() && num_lines_splitted[1].is_empty() {
+fn process_line(lines_splitted: &Vec<&str>, total_lines: usize) -> bool {
+    if lines_splitted[0].is_empty() && lines_splitted[1].is_empty() {
         return true;
-    } else if num_lines_splitted[0].is_empty() && !num_lines_splitted[1].is_empty() {
-        if num_lines_splitted[1].parse::<usize>().unwrap() >= total_lines {
+    } else if lines_splitted[0].is_empty() && !lines_splitted[1].is_empty() {
+        if lines_splitted[1].parse::<usize>().unwrap() >= total_lines {
             return true;
         }
         return false;
-    } else if !num_lines_splitted[0].is_empty() && num_lines_splitted[1].is_empty() {
-        if num_lines_splitted[0].parse::<usize>().unwrap() <= total_lines {
+    } else if !lines_splitted[0].is_empty() && lines_splitted[1].is_empty() {
+        if lines_splitted[0].parse::<usize>().unwrap() <= total_lines {
             return true;
         }
         return false;
-    } else if !num_lines_splitted[0].is_empty() && !num_lines_splitted[1].is_empty() {
-        if num_lines_splitted[0].parse::<usize>().unwrap() <= total_lines && num_lines_splitted[1].parse::<usize>().unwrap() >= total_lines {
+    } else if !lines_splitted[0].is_empty() && !lines_splitted[1].is_empty() {
+        if lines_splitted[0].parse::<usize>().unwrap() <= total_lines && lines_splitted[1].parse::<usize>().unwrap() >= total_lines {
             return true;
         }
         return false;
