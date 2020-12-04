@@ -25,8 +25,16 @@ pub mod statistic {
         unsafe {
             output.push_str(format!("Characters read:\t\t{}\n", total_chars).as_str());
             output.push_str(format!("Unicode Characters read:\t{}\n", total_uni_chars).as_str());
-            output.push_str(format!("Size of file:\t\t\t{} Bytes", filesize).as_str());
+            output.push_str(format!("Size of file:\t\t\t{}", formatSize(filesize)).as_str());
         }
         return output;
     }
+
+    fn formatSize(mut size: usize) -> String {
+        if size > 1000 {
+            size = size / 1000;
+            return format!("{} {}", size, "KiloBytes");
+        }
+        return size;
+    } 
 }
