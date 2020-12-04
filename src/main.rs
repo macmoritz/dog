@@ -19,7 +19,8 @@ fn main() {
     let mut handle = io::BufWriter::new(stdout.lock());
     let mut total_lines: usize = 0;
     let lines_splitted: Vec<&str> = lines.split(":").collect();
-
+    let mut output: String = String::from("");
+    
     let metadata = metadata(&path);
 
     if !fs::metadata(&path).is_ok() {
@@ -41,26 +42,30 @@ fn main() {
         total_lines = total_lines + 1;
 
         if process_line(&lines_splitted, total_lines) {
-            
             if stats {
                 stats::addchars(&my_line);
             }
 
             if linenumbers {
-                write!(handle, "{}", total_lines.to_string() + " | ").expect(errormsg);
+               output.push_str(&(total_lines.to_string() + " │ "));
             }
 
             if ends {
-                writeln!(handle, "{}", my_line + "$").expect(errormsg);  
+                output.push_str(&(my_line + "$"));
             } else {
-                writeln!(handle, "{}", &my_line).expect(errormsg);
+                output.push_str(&my_line);
             }
+            writeln!(handle, "{}", &output).expect(errormsg);
+            output = String::from("");
         }
     }
 
     if stats {
-        writeln!(handle, "Lines processed:\t\t{}", total_lines).expect(errormsg);
-        writeln!(handle, "{}", stats::returnstats()).expect(errormsg);
+        output.push_str(&stats::divider());
+        output.push_str(&("\nlines read: \t\t\t".to_owned() + &total_lines.to_string()));
+        output.push_str(&stats::returnstats());
+
+        writeln!(handle, "{}", &output).expect(errormsg);
     }
 }
 

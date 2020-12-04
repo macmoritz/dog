@@ -14,6 +14,7 @@ toml = "0.5.7"
 yaml-rust = "0.4.4"
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.8"
+terminal_size = "0.1.15"
 
 [build-dependencies.config_struct]
 version = "~0.4.0"
