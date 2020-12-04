@@ -47,11 +47,11 @@ pub mod statistic {
         return output;
     }
 
-    fn formatSize(mut size: usize) -> String {
+    fn formatsize(mut size: usize) -> String {
         if size > 1000 {
             size = size / 1000;
             return format!("{} {}", size, "KiloBytes");
         }
-        return size;
+        return format!("{} {}", size, "Bytes");
     } 
 }
