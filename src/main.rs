@@ -41,6 +41,7 @@ fn main() {
         total_lines = total_lines + 1;
 
         if process_line(&lines_splitted, total_lines) {
+            
             if stats {
                 stats::addchars(&my_line);
             }
