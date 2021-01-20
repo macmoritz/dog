@@ -1,6 +1,6 @@
 # dog config file
 only_use_config:
-  mode: true
+  mode: false
   warning: false
 features:
   line_numbers: true
