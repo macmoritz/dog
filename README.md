@@ -48,3 +48,16 @@ in zshrc or bashrc
 ```bash
 alias cat='dog'
 ```
+
+## Third-Party software
+### Thanks to all developers
+https://github.com/mackwic/colored
+https://github.com/TeXitoi/structopt
+https://docs.rs/config_struct/0.5.0/config_struct/
+https://docs.rs/toml/0.5.8/toml/
+https://github.com/chyh1990/yaml-rust
+https://github.com/serde-rs/serde
+https://github.com/dtolnay/serde-yaml
+https://github.com/eminence/terminal-size
+https://github.com/freaky/rust-filesize
+https://github.com/mackwic/colored
