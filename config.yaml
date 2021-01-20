@@ -1,6 +1,12 @@
 # dog config file
-only_use_config: false
+only_use_config:
+  mode: true
+  warning: false
 features:
-  line_numbers: false
+  line_numbers: true
   show_ends: false
   show_statistics: true
+default:
+  list_dir: true # list dir if dir is given
+  list_dir_depth: 0 # 0 is the given folder
+  buffer: 50 # print buffer every x lines

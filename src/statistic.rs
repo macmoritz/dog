@@ -1,6 +1,7 @@
 #[allow(non_upper_case_globals)]
 pub mod statistic {
     use std::fs;
+    use filesize::PathExt;
 
     static mut total_chars: usize = 0;
     static mut total_uni_chars: usize = 0;
@@ -19,13 +20,19 @@ pub mod statistic {
         }
     }
 
+    pub fn getdisksize(path: &std::path::PathBuf) {
+        unsafe {
+            filesize = path.size_on_disk().unwrap() as usize;
+        }
+    }
+
     pub fn returnstats() -> String {
         let mut output: String = String::from("");
 
         unsafe {
             output.push_str(format!("\nCharacters read:\t\t{}\n", total_chars).as_str());
             output.push_str(format!("Unicode Characters read:\t{}\n", total_uni_chars).as_str());
-            output.push_str(format!("Real size of file:\t\t{}", formatSize(filesize)).as_str());
+            output.push_str(format!("Real size of file:\t\t{}", formatsize(filesize)).as_str());
         }
         return output;
     }
@@ -48,6 +55,21 @@ pub mod statistic {
     }
 
     fn formatsize(mut size: usize) -> String {
+        if size > 1000000000000 {
+            size = size / 1000000000000;
+            return format!("{} {}", size, "TeraBytes");
+        }
+
+        if size > 1000000000 {
+            size = size / 1000000000;
+            return format!("{} {}", size, "GigaBytes");
+        }
+
+        if size > 1000000 {
+            size = size / 1000000;
+            return format!("{} {}", size, "MegaBytes");
+        }
+
         if size > 1000 {
             size = size / 1000;
             return format!("{} {}", size, "KiloBytes");
