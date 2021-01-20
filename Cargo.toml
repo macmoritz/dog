@@ -1,6 +1,6 @@
 [package]
 name = "dog"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["moritz"]
 description = "dog - a cat alternative written in rust"
 edition = "2018"
@@ -9,3 +9,18 @@ edition = "2018"
 
 [dependencies]
 structopt = { version = "0.3", default-features = false }
+config_struct = "0.5.0"
+toml = "0.5.7"
+yaml-rust = "0.4.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.8"
+terminal_size = "0.1.15"
+filesize = "0.2.0"
+colored = "2"
+
+[build-dependencies]
+dirs = "3.0.1"
+
+[build-dependencies.config_struct]
+version = "~0.4.0"
+features = ["toml-parsing", "yaml-parsing"]
