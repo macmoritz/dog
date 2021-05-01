@@ -6,7 +6,6 @@ description = "dog - a cat alternative written in rust"
 edition = "2018"
 readme = "README.md"
 repository = "https://github.com/macmoritz/dog"
-license = "GPL-3"
 license-file = "LICENSE"
 keywords = ["dog", "cat", "clone", "cli"]
 categories = ["command-line-utilities", "parsing", "text-processing", "text-editors", "visualization"]
