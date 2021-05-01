@@ -51,7 +51,6 @@ alias cat='dog'
 
 ## Third-Party software
 ### Thanks to all developers
-https://github.com/mackwic/colored
 https://github.com/TeXitoi/structopt
 https://docs.rs/config_struct/0.5.0/config_struct/
 https://docs.rs/toml/0.5.8/toml/
