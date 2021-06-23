@@ -1,13 +1,13 @@
 [package]
-name = "dog"
+name = "elk"
 version = "0.3.0"
 authors = ["moritz"]
-description = "dog - a cat alternative written in rust"
+description = "elk - a cat alternative written in rust"
 edition = "2018"
 readme = "README.md"
-repository = "https://github.com/macmoritz/dog"
+repository = "https://github.com/macmoritz/elk"
 license-file = "LICENSE"
-keywords = ["dog", "cat", "clone", "cli"]
+keywords = ["elk", "cat", "clone", "cli"]
 categories = ["command-line-utilities", "parsing", "text-processing", "text-editors", "visualization"]
 build = "build.rs"
 

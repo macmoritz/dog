@@ -8,17 +8,17 @@ pub mod check {
     pub fn check_warnings() {
         if input::getouc() && input::getoucwarning() {
             println!("{}", "ONLY USING CONFIG\n".color("yellow").bold().underline());
-        } 
+        }
     }
 
     pub fn check_file(path: &std::path::PathBuf) {
         let metadata = metadata(&path);
 
         if !fs::metadata(&path).is_ok() {
-            println!("{}", format!("dog: {}: No such file or directory", &path.display()).color("red").bold());
+            println!("{}", format!("elk: {}: No such file or directory", &path.display()).color("red").bold());
             process::exit(1);
         } else if metadata.unwrap().is_dir() {
-            println!("{}", format!("dog: {}: Is a directory", path.display()).color("red").bold());
+            println!("{}", format!("elk: {}: Is a directory", path.display()).color("red").bold());
 
             if input::getlistdir() {
                 println!("{}", "Do you mean one of these files?".color("green"));

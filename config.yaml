@@ -1,4 +1,4 @@
-# dog config file
+# elk config file
 only_use_config:
   mode: false
   warning: false

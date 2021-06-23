@@ -4,7 +4,7 @@ use dirs;
 #[allow(unused_must_use)]
 fn main() {
     let mut created_config: bool = false;
-    let paths: [&str; 2] = [&(dirs::home_dir().unwrap().to_str().unwrap().to_owned()  + "/.config/dog/config.yaml"), "./config.yaml"];
+    let paths: [&str; 2] = [&(dirs::home_dir().unwrap().to_str().unwrap().to_owned()  + "/.config/elk/config.yaml"), "./config.yaml"];
 
     for path in &paths {
         if std::path::Path::new(&path).exists() && !created_config {

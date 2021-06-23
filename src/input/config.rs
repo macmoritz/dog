@@ -54,7 +54,7 @@ pub const CONFIG: Config = Config {
 #[cfg(debug_assertions)]
 impl Config {
     pub fn load() -> Cow<'static, Self> {
-        let filepath = concat!(env!("CARGO_MANIFEST_DIR"), "//home/moritz/.config/dog/config.yaml");
+        let filepath = concat!(env!("CARGO_MANIFEST_DIR"), "//home/moritz/.config/elk/config.yaml");
         Self::load_from(filepath.as_ref()).expect("Failed to load Config.")
     }
 

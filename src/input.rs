@@ -4,12 +4,12 @@ use std::convert::TryInto;
 mod config;
 use config::CONFIG;
 
-/// dog - a cat alternative written in rust
+/// elk - a cat alternative written in rust
 #[derive(StructOpt)]
 pub struct Cli {
     /// Give me a file
     #[structopt(parse(from_os_str))]
-    // #[structopt(parse(from_os_str), default_value = ".")] // dog without path -> ls
+    // #[structopt(parse(from_os_str), default_value = ".")] // elk without path -> ls
     path: std::path::PathBuf,
 
     /// Do not print the file contents
