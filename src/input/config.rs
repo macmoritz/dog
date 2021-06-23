@@ -47,14 +47,14 @@ pub const CONFIG: Config = Config {
     },
     only_use_config: _Config__only_use_config {
         mode: false,
-        warning: true,
+        warning: false,
     },
 };
 
 #[cfg(debug_assertions)]
 impl Config {
     pub fn load() -> Cow<'static, Self> {
-        let filepath = concat!(env!("CARGO_MANIFEST_DIR"), "//home/moritz/.config/dog/config.yaml");
+        let filepath = concat!(env!("CARGO_MANIFEST_DIR"), "/./config.yaml");
         Self::load_from(filepath.as_ref()).expect("Failed to load Config.")
     }
 
