@@ -1,6 +1,6 @@
 [package]
 name = "elk"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["macmoritz"]
 description = "elk - a cat alternative written in rust"
 edition = "2018"
