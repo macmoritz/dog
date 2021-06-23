@@ -168,7 +168,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "dog"
+name = "dtoa"
+version = "0.4.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "134951f4028bdadb9b84baf4232681efbf277da25144b9b0ad65df75946c422b"
+
+[[package]]
+name = "elk"
 version = "0.3.0"
 dependencies = [
  "colored",
@@ -180,12 +186,6 @@ dependencies = [
  "structopt",
  "terminal_size",
 ]
-
-[[package]]
-name = "dtoa"
-version = "0.4.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "134951f4028bdadb9b84baf4232681efbf277da25144b9b0ad65df75946c422b"
 
 [[package]]
 name = "failure"
@@ -355,7 +355,7 @@ dependencies = [
  "redox_syscall",
  "rust-argon2",
 ]
-elk
+
 [[package]]
 name = "rust-argon2"
 version = "0.8.3"
