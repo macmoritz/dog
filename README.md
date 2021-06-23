@@ -69,10 +69,10 @@ alias cat='elk'
 
 ## Third-Party software
 #### Thanks to all developers
-https://github.com/TeXitoi/structopt\
-https://github.com/mistodon/config_struct\
-https://github.com/serde-rs/serde\
-https://github.com/dtolnay/serde-yaml\
-https://github.com/eminence/terminal-size\
-https://github.com/freaky/rust-filesize\
-https://github.com/mackwic/colored\
+https://github.com/TeXitoi/structopt  
+https://github.com/mistodon/config_struct  
+https://github.com/serde-rs/serde  
+https://github.com/dtolnay/serde-yaml  
+https://github.com/eminence/terminal-size  
+https://github.com/freaky/rust-filesize  
+https://github.com/mackwic/colored  
