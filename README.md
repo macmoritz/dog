@@ -1,6 +1,6 @@
 # dog
 
-dog - a cat alternative written in rust
+dog - a powerful cat alternative written in rust
 
 dog is a replacement for the 'cat' command
 
@@ -29,7 +29,9 @@ dogs features include
         <path>    Give me a file\
 
 ## Installation
-
+```bash
+cargo install dog
+```
 
 ### Manual installation
 
@@ -58,7 +60,7 @@ and add this line to your .bashrc or .zshrc
 ```bash
 export PATH=$PATH:$HOME/.cargo/bin
 ```
-### Using dog instead of cat
+## Using dog instead of cat
 
 in .zshrc or .bashrc
 ```bash

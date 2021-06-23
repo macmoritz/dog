@@ -168,6 +168,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "dog"
+version = "0.3.0"
+dependencies = [
+ "colored",
+ "config_struct",
+ "dirs",
+ "filesize",
+ "serde",
+ "serde_yaml 0.8.14",
+ "structopt",
+ "terminal_size",
+]
+
+[[package]]
 name = "dtoa"
 version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -352,20 +366,6 @@ dependencies = [
  "blake2b_simd",
  "constant_time_eq",
  "crossbeam-utils",
-]
-
-[[package]]
-name = "rust-dog"
-version = "0.3.0"
-dependencies = [
- "colored",
- "config_struct",
- "dirs",
- "filesize",
- "serde",
- "serde_yaml 0.8.14",
- "structopt",
- "terminal_size",
 ]
 
 [[package]]

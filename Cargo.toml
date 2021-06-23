@@ -1,5 +1,5 @@
 [package]
-name = "rust-dog"
+name = "dog"
 version = "0.3.0"
 authors = ["moritz"]
 description = "dog - a cat alternative written in rust"
