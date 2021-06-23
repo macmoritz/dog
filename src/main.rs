@@ -47,7 +47,7 @@ fn main() {
             }
 
             if linenumbers {
-                output.push_str(&(total_lines.to_string() + " │ "));
+                output.push_str(&format!("{:05} │ ", total_lines.to_string()));
             }
 
             if ends {

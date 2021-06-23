@@ -37,8 +37,8 @@ pub struct _Config__only_use_config {
 pub const CONFIG: Config = Config {
     default: _Config__default {
         buffer: 50,
-        list_dir: true,
-        list_dir_depth: 0,
+        list_dir: false,
+        list_dir_depth: 1,
     },
     features: _Config__features {
         line_numbers: true,
@@ -46,7 +46,7 @@ pub const CONFIG: Config = Config {
         show_statistics: true,
     },
     only_use_config: _Config__only_use_config {
-        mode: false,
+        mode: true,
         warning: false,
     },
 };
@@ -54,7 +54,7 @@ pub const CONFIG: Config = Config {
 #[cfg(debug_assertions)]
 impl Config {
     pub fn load() -> Cow<'static, Self> {
-        let filepath = concat!(env!("CARGO_MANIFEST_DIR"), "/./config.yaml");
+        let filepath = concat!(env!("CARGO_MANIFEST_DIR"), "//home/moritz/.config/dog/config.yaml");
         Self::load_from(filepath.as_ref()).expect("Failed to load Config.")
     }
 

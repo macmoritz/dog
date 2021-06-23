@@ -29,7 +29,7 @@ pub struct Cli {
     size: bool,
 
     /// Print line numbers
-    #[structopt(short = "n", long = "line_numbers")]
+    #[structopt(short = "n", long = "linenumbers")]
     line_numbers: bool,
 
     /// Print a specified range of lines
