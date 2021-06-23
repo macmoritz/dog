@@ -1,7 +1,7 @@
 [package]
 name = "elk"
 version = "0.3.0"
-authors = ["moritz"]
+authors = ["macmoritz"]
 description = "elk - a cat alternative written in rust"
 edition = "2018"
 readme = "README.md"
